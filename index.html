@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ronnie & Mark - Double Birthday Celebration Countdown</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fiesta: {
+              gold: '#D4AF37',
+              goldDark: '#996515',
+              bronze: '#C5A059',
+              greenDark: '#133E2B',
+              greenForest: '#1D5D3A',
+              emerald: '#0F3E2E',
+              cream: '#FFF9ED',
+              parchment: '#FBF5E6',
+              bamboo: '#8C6737'
+            }
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            serifHeading: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0d281e;
+      overflow-x: hidden;
+    }
+
+    /* Tropical Bamboo & Sun Pattern Layer */
+    .bamboo-bg {
+      background-color: #123124;
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.18) 0%, transparent 60%),
+        repeating-linear-gradient(90deg, 
+          rgba(164, 126, 73, 0.08) 0px, 
+          rgba(164, 126, 73, 0.08) 40px, 
+          rgba(66, 47, 21, 0.25) 41px, 
+          rgba(235, 203, 137, 0.1) 43px, 
+          rgba(164, 126, 73, 0.08) 75px);
+    }
+
+    /* Sunburst 8-ray subtle glow */
+    .sunburst {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 198, 70, 0.22) 0%, rgba(212, 175, 55, 0.05) 45%, transparent 70%);
+      pointer-events: none;
+      animation: spinSlow 90s linear infinite;
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating tropical leaves animation */
+    @keyframes sway {
+      0%, 100% { transform: rotate(-2deg) translateY(0px); }
+      50% { transform: rotate(2.5deg) translateY(-8px); }
+    }
+    .sway-slow {
+      animation: sway 6s ease-in-out infinite;
+    }
+    .sway-reverse {
+      animation: sway 7s ease-in-out infinite reverse;
+    }
+
+    /* Ornate metallic gold text gradient */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FBF0B9 0%, #D4AF37 35%, #AA771C 70%, #F5D77F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Golden border shine */
+    .gold-frame {
+      border: 2px solid rgba(212, 175, 55, 0.6);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(212, 175, 55, 0.1);
+    }
+
+    /* Countdown card shimmer */
+    .countdown-card {
+      background: linear-gradient(180deg, #1C4D38 0%, #0F3323 100%);
+      border: 1px solid rgba(245, 215, 127, 0.35);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 12px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Ribbon banner cuts */
+    .ribbon-banner {
+      position: relative;
+      background: linear-gradient(180deg, #FFF6DE 0%, #E9D7A5 100%);
+      border: 2px solid #996515;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+  </style>
+</head>
+<body class="bamboo-bg min-h-screen text-amber-50 relative flex flex-col justify-between selection:bg-amber-400 selection:text-green-950">
+
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
+    <div class="sunburst"></div>
+    
+    <!-- Top Left Monstera & Palm Leaves -->
+    <svg class="absolute -top-12 -left-12 w-48 sm:w-72 h-48 sm:h-72 text-emerald-700/40 sway-slow" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M10,10 C60,20 120,70 140,150 C110,130 90,80 10,10 Z M40,60 C80,80 120,120 130,180 C95,160 70,120 40,60 Z" />
+      <path d="M0,40 Q90,90 120,200 Q70,140 0,40" opacity="0.6"/>
+    </svg>
+
+    <!-- Top Right Foliage -->
+    <svg class="absolute -top-12 -right-12 w-48 sm:w-72 h-48 sm:h-72 text-emerald-700/40 sway-reverse" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M190,10 C140,20 80,70 60,150 C90,130 110,80 190,10 Z M160,60 C120,80 80,120 70,180 C105,160 130,120 160,60 Z" />
+    </svg>
+
+    <!-- Bottom Tropical Accents -->
+    <svg class="absolute -bottom-14 -left-10 w-44 sm:w-64 h-44 sm:h-64 text-amber-600/20" viewBox="0 0 200 200" fill="currentColor">
+      <circle cx="40" cy="160" r="80" />
+    </svg>
+    <svg class="absolute -bottom-14 -right-10 w-44 sm:w-64 h-44 sm:h-64 text-emerald-800/30 sway-slow" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M180,180 C110,160 70,100 50,20 C80,50 120,110 180,180 Z" />
+    </svg>
+  </div>
+
+  <header class="relative z-10 w-full max-w-5xl mx-auto px-4 pt-6 flex items-center justify-between">
+    <div class="flex items-center space-x-2 bg-emerald-950/70 border border-amber-500/30 px-3.5 py-1.5 rounded-full backdrop-blur-md text-xs font-medium text-amber-200">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping mr-1"></span>
+      <span>Philippine Standard Time (GMT+8)</span>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <!-- Sound Fanfare Button -->
+      <button id="audioToggleBtn" class="flex items-center space-x-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 hover:text-amber-100 px-3 py-1.5 rounded-full text-xs font-semibold transition-all backdrop-blur-sm" title="Play celebration chime">
+        <svg id="soundIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M11 5L6 9H2v6h4l5 4V5z"/>
+        </svg>
+        <span id="audioLabel">Fanfare</span>
+      </button>
+
+      <!-- Confetti Cannon Button -->
+      <button id="confettiBtn" class="bg-gradient-to-r from-amber-500 to-yellow-400 text-green-950 hover:brightness-110 font-bold px-3.5 py-1.5 rounded-full text-xs shadow-lg transition-transform active:scale-95 flex items-center space-x-1.5">
+        <span>🎉</span>
+        <span class="hidden sm:inline">Toss Confetti</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="relative z-10 w-full max-w-4xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center text-center">
+
+    <!-- Ornate Tropa Banner -->
+    <div class="relative mb-5">
+      <div class="ribbon-banner px-6 sm:px-10 py-2 rounded-full transform hover:scale-105 transition-transform duration-300 shadow-xl">
+        <div class="flex items-center justify-center space-x-2.5">
+          <span class="text-amber-700 text-sm">🍻</span>
+          <span class="font-display font-black tracking-[0.2em] text-emerald-950 text-xs sm:text-sm uppercase">
+            Tropa Double Birthday Bash!
+          </span>
+          <span class="text-amber-700 text-sm">👊</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Celebrants Photo Card Section -->
+    <div class="relative mb-6 group">
+      <div class="relative w-64 sm:w-80 rounded-3xl p-2 bg-gradient-to-b from-amber-400 via-amber-600 to-amber-800 shadow-[0_12px_35px_rgba(0,0,0,0.8)] border-2 border-amber-300">
+        <!-- Photo Container -->
+        <div class="relative w-full aspect-[9/14] rounded-2xl overflow-hidden bg-emerald-950 flex flex-col items-center justify-center text-center shadow-inner">
+          <img id="celebrantImg" src="celebrants.jpg" alt="Ronnie & Mark" 
+            class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
+            onerror="this.style.display='none'; document.getElementById('photoFallback').classList.remove('hidden');" />
+          
+          <!-- Illustrated Fallback if celebrants.jpg isn't uploaded yet -->
+          <div id="photoFallback" class="hidden flex flex-col items-center justify-center p-6 text-amber-200">
+            <div class="text-6xl mb-3 animate-bounce">👬</div>
+            <span class="font-display font-bold text-lg text-amber-300">RONNIE &amp; MARK</span>
+            <p class="text-xs text-amber-200/80 mt-1">Duo Birthday Celebration</p>
+          </div>
+
+          <!-- Bottom Floating Badge on Photo -->
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3 pt-8 flex items-center justify-between text-left">
+            <div>
+              <div class="text-[10px] uppercase font-bold tracking-widest text-amber-400">The Celebrants</div>
+              <div class="text-sm sm:text-base font-display font-extrabold text-white">Ronnie &amp; Mark</div>
+            </div>
+            <span class="text-xl">👑👑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Celebration Title & Tagline -->
+    <p class="font-serifHeading italic text-lg sm:text-2xl text-amber-200/90 font-medium tracking-wide">
+      “Sama-sama ang buong tropa!”
+    </p>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl md:text-6xl mt-1 mb-3 tracking-wider gold-gradient-text drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+      RONNIE &amp; MARK
+    </h1>
+
+    <p class="text-xs sm:text-sm text-amber-300 font-medium mb-5 max-w-md">
+      Handaan, inuman, videoke, at kwentuhan! Walang uuwi nang maaga sa birthday ng mga lodi. 🍻🎤
+    </p>
+
+    <!-- Target Date & Schedule Badge -->
+    <div class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-emerald-950/80 border border-amber-400/40 px-4 sm:px-6 py-2.5 rounded-2xl shadow-xl backdrop-blur-md mb-10">
+      <div class="flex items-center space-x-1.5 text-amber-300 text-sm font-semibold">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <span>September 19, 2026 (Saturday)</span>
+      </div>
+      <span class="text-amber-500/60 hidden sm:inline">•</span>
+      <div class="flex items-center space-x-1.5 text-amber-200 text-sm font-medium">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <polyline points="12 7 12 12 15 15"/>
+        </svg>
+        <span>12:00 PM Noontime (PHT)</span>
+      </div>
+    </div>
+
+    <section aria-label="Countdown Timer" class="w-full max-w-3xl mb-10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+        
+        <!-- DAYS -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="daysNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-amber-300 tracking-tight transition-transform duration-200 group-hover:scale-105">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Days</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span id="daysSub" class="text-[10px] text-amber-400/60 mt-1">Sunrises left</span>
+        </div>
+
+        <!-- HOURS -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="hoursNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-amber-300 tracking-tight transition-transform duration-200 group-hover:scale-105">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Hours</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span class="text-[10px] text-amber-400/60 mt-1">60m cycles</span>
+        </div>
+
+        <!-- MINUTES -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="minutesNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-amber-300 tracking-tight transition-transform duration-200 group-hover:scale-105">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Minutes</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span class="text-[10px] text-amber-400/60 mt-1">60s ticks</span>
+        </div>
+
+        <!-- SECONDS -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="secondsNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-yellow-400 tracking-tight transition-transform duration-200 group-hover:scale-105 animate-[pulse_1s_ease-in-out_infinite]">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Seconds</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span class="text-[10px] text-yellow-400/70 mt-1">Live ticking</span>
+        </div>
+
+      </div>
+
+      <!-- Live Status Message Pill -->
+      <div class="mt-6 flex items-center justify-center">
+        <div id="statusPill" class="bg-emerald-900/60 border border-amber-400/30 text-amber-200 text-xs sm:text-sm px-4 py-1.5 rounded-full backdrop-blur-md flex items-center space-x-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
+          <span id="statusMessage">Counting down to the grand feast and toast!</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="w-full max-w-2xl bg-emerald-950/70 border border-amber-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-lg shadow-2xl relative">
+      
+      <!-- Corner Filipino Eagle Inspired Badges -->
+      <div class="flex flex-col sm:flex-row items-center justify-between border-b border-amber-500/20 pb-5 mb-5 gap-4 text-left">
+        <div class="flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-300 text-xl shadow-inner">
+            📍
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold">Venue &amp; Tambayan</div>
+            <div class="text-base sm:text-lg font-semibold text-amber-50">Delos Reyes Residence</div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-300 text-xl shadow-inner">
+            👕
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold">Attire</div>
+            <div class="text-base sm:text-lg font-semibold text-amber-50">Barong o Festive Casual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Buttons -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Add to Calendar (.ics) -->
+        <button id="addToCalBtn" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-green-950 font-bold text-sm tracking-wide shadow-lg shadow-amber-900/30 flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          <span>Add to Calendar (.ICS)</span>
+        </button>
+
+        <!-- Copy Invitation Details -->
+        <button id="copyInviteBtn" class="w-full py-3 px-4 rounded-xl bg-emerald-900/80 hover:bg-emerald-800/80 border border-amber-400/40 text-amber-200 font-semibold text-sm tracking-wide flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+          </svg>
+          <span id="copyBtnText">Copy Invitation Text</span>
+        </button>
+      </div>
+
+      <!-- Toast Feedback Message -->
+      <div id="toastMessage" class="hidden mt-3 text-xs text-amber-300 bg-amber-950/80 border border-amber-400/40 py-1.5 px-3 rounded-lg text-center transition-opacity">
+        Copied to clipboard! Share with family and friends.
+      </div>
+    </div>
+
+    <!-- Fiesta Potluck & Celebration Message Board -->
+    <div class="w-full max-w-2xl mt-8 bg-emerald-950/80 border border-amber-500/40 rounded-3xl p-5 sm:p-7 backdrop-blur-xl shadow-2xl text-left relative overflow-hidden">
+      <!-- Top Header Accent -->
+      <div class="flex items-center justify-between border-b border-amber-500/30 pb-4 mb-5">
+        <div class="flex items-center space-x-2.5">
+          <span class="text-2xl">💬</span>
+          <div>
+            <h3 class="font-display font-bold text-lg sm:text-xl text-amber-300">Tropa Chat &amp; Ambagan Wall</h3>
+            <p class="text-xs text-amber-200/70">Mag-iwan ng bati o sabihin ang iyong ambag (videoke, pulutan, drinks)!</p>
+          </div>
+        </div>
+        <span id="messageCountBadge" class="bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs px-2.5 py-1 rounded-full font-bold">
+          0 Messages
+        </span>
+      </div>
+
+      <!-- Message Submission Form without category -->
+      <form id="chatForm" class="space-y-3 mb-6 bg-emerald-900/40 p-4 rounded-2xl border border-amber-400/20">
+        <div>
+          <label class="block text-[11px] font-semibold text-amber-300 uppercase tracking-wider mb-1">Pangalan / Nickname</label>
+          <input id="authorInput" type="text" placeholder="Halimbawa: Pareng Roz" required maxlength="30"
+            class="w-full bg-emerald-950 border border-amber-500/40 rounded-xl px-3.5 py-2 text-sm text-amber-100 placeholder-amber-400/30 focus:outline-none focus:border-amber-400 transition" />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-semibold text-amber-300 uppercase tracking-wider mb-1">Mensahe / Ambag</label>
+          <input id="messageInput" type="text" placeholder="Halimbawa: Happy birthday mga bro! Sagot ko na ang videoke!" required maxlength="150"
+            class="w-full bg-emerald-950 border border-amber-500/40 rounded-xl px-3.5 py-2 text-sm text-amber-100 placeholder-amber-400/30 focus:outline-none focus:border-amber-400 transition" />
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+          <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:brightness-110 text-green-950 font-bold text-xs tracking-wider uppercase transition shadow-md flex items-center justify-center space-x-2">
+            <span>I-post ang Mensahe</span>
+            <span>✦</span>
+          </button>
+          <button id="copyPotluckListBtn" type="button" class="text-xs text-amber-300 hover:text-amber-100 underline flex items-center space-x-1">
+            <span>📋 Kopyahin lahat para sa Group Chat</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Message Feed List -->
+      <div id="messagesContainer" class="space-y-3 max-h-80 overflow-y-auto pr-1">
+        <!-- Messages rendered via JavaScript -->
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="relative z-10 w-full text-center py-6 px-4 text-xs text-amber-300/60 border-t border-emerald-800/40 bg-emerald-950/50">
+    <p class="tracking-wide">Double Birthday Celebration • Ronnie &amp; Mark</p>
+    <p class="mt-1 text-amber-400/40">Mabuhay! Looking forward to celebrating together.</p>
+  </footer>
+
+  <script>
+    // Exact Target Date: September 19, 2026, 12:00:00 Philippines Time (GMT+8)
+    const TARGET_DATE_ISO = "2026-09-19T12:00:00+08:00";
+    const targetTimestamp = new Date(TARGET_DATE_ISO).getTime();
+
+    const daysNum = document.getElementById('daysNum');
+    const hoursNum = document.getElementById('hoursNum');
+    const minutesNum = document.getElementById('minutesNum');
+    const secondsNum = document.getElementById('secondsNum');
+    const statusMessage = document.getElementById('statusMessage');
+
+    function pad(num) {
+      return num < 10 ? '0' + num : num;
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetTimestamp - now;
+
+      if (difference <= 0) {
+        daysNum.textContent = '00';
+        hoursNum.textContent = '00';
+        minutesNum.textContent = '00';
+        secondsNum.textContent = '00';
+        statusMessage.textContent = "🎉 It's Celebration Time! Maligayang Kaarawan Ronnie & Mark! 🍻";
+        return;
+      }
+
+      const totalSeconds = Math.floor(difference / 1000);
+      const days = Math.floor(totalSeconds / (3600 * 24));
+      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = Math.floor(totalSeconds % 60);
+
+      daysNum.textContent = pad(days);
+      hoursNum.textContent = pad(hours);
+      minutesNum.textContent = pad(minutes);
+      secondsNum.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    let messages = [];
+
+    const messagesContainer = document.getElementById('messagesContainer');
+    const messageCountBadge = document.getElementById('messageCountBadge');
+    const chatForm = document.getElementById('chatForm');
+    const authorInput = document.getElementById('authorInput');
+    const messageInput = document.getElementById('messageInput');
+
+    function renderMessages() {
+      messagesContainer.innerHTML = '';
+      messageCountBadge.textContent = `${messages.length} ${messages.length === 1 ? 'Message' : 'Messages'}`;
+
+      if (messages.length === 0) {
+        messagesContainer.innerHTML = `
+          <div class="text-center py-8 px-4 bg-emerald-900/30 border border-dashed border-amber-400/30 rounded-2xl text-amber-200/70 text-xs">
+            <span class="text-3xl block mb-2">🍻🎤</span>
+            <p class="font-bold text-amber-300">Wala pang mensahe ang tropa!</p>
+            <p class="mt-1 text-amber-400/60">Mauna ka na mag-iwan ng bati o sabihin ang ambag mo kina Ronnie at Mark!</p>
+          </div>
+        `;
+        return;
+      }
+
+      messages.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-emerald-900/70 border border-amber-500/30 rounded-2xl p-3.5 hover:border-amber-400/60 transition shadow-md";
+        card.innerHTML = `
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-bold text-sm text-amber-300 font-display">${escapeHtml(item.author)}</span>
+            <span class="text-[10px] text-amber-400/60">${escapeHtml(item.time)}</span>
+          </div>
+          <p class="text-xs sm:text-sm text-amber-100 leading-relaxed font-normal">${escapeHtml(item.text)}</p>
+        `;
+        messagesContainer.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const author = authorInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if (!author || !message) return;
+
+      const newMsg = {
+        id: 'msg-' + Date.now(),
+        author: author,
+        text: message,
+        time: "Kani-kanina lang"
+      };
+
+      messages.unshift(newMsg);
+      renderMessages();
+
+      messageInput.value = '';
+      fireConfetti();
+      playFiestaChime();
+    });
+
+    renderMessages();
+
+    // Copy Chat & Potluck List for Group Chat (Viber, Messenger, WhatsApp)
+    document.getElementById('copyPotluckListBtn').addEventListener('click', () => {
+      if (messages.length === 0) {
+        alertToast("Wala pang laman ang wall! Mag-iwan muna ng mensahe.");
+        return;
+      }
+      let summary = "💬 TROPA BIRTHDAY CHAT & AMBAGAN (Ronnie & Mark):\n\n";
+      messages.forEach((m, idx) => {
+        summary += `${idx + 1}. ${m.author}: ${m.text}\n`;
+      });
+      summary += "\nKita-kits sa September 19, 2026! 🍻🎉";
+      copyToClipboard(summary, "✓ Nakopya ang listahan! Pwede na i-paste sa Group Chat.");
+    });
+
+    function fireConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 65,
+          spread: 70,
+          origin: { y: 0.65 },
+          colors: ['#D4AF37', '#F5D77F', '#1D5D3A', '#FFF9ED', '#E63946']
+        });
+      }
+    }
+
+    document.getElementById('confettiBtn').addEventListener('click', () => {
+      fireConfetti();
+      playFiestaChime();
+    });
+
+    let synth = null;
+    function playFiestaChime() {
+      try {
+        if (!synth && window.Tone) {
+          Tone.start();
+          synth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: "triangle" },
+            envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 }
+          }).toDestination();
+          synth.volume.value = -6;
+        }
+
+        if (synth) {
+          const now = Tone.now();
+          synth.triggerAttackRelease("F4", "8n", now);
+          synth.triggerAttackRelease("A4", "8n", now + 0.12);
+          synth.triggerAttackRelease("C5", "8n", now + 0.24);
+          synth.triggerAttackRelease(["F5", "A5", "C6"], "4n", now + 0.36);
+        }
+      } catch (err) {
+        console.warn("Audio context note:", err);
+      }
+    }
+
+    document.getElementById('audioToggleBtn').addEventListener('click', () => {
+      playFiestaChime();
+      fireConfetti();
+    });
+
+    const copyInviteBtn = document.getElementById('copyInviteBtn');
+    const toast = document.getElementById('toastMessage');
+
+    function alertToast(msg) {
+      toast.classList.remove('hidden');
+      toast.textContent = msg;
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+
+    function copyToClipboard(text, successMsg) {
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = text;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand('copy');
+        alertToast(successMsg);
+      } catch (e) {
+        console.error('Copy failed:', e);
+      }
+      document.body.removeChild(tempTextArea);
+    }
+
+    copyInviteBtn.addEventListener('click', () => {
+      const inviteText = `🎉 TROPANG DOUBLE BIRTHDAY CELEBRATION! 🎉\n` +
+        `Birthday Boys: Ronnie & Mark\n` +
+        `Petsa: Sabado, September 19, 2026\n` +
+        `Oras: 12:00 PM Tanghali\n` +
+        `Lugar: Delos Reyes Residence\n` +
+        `Attire: Barong o Festive Casual\n` +
+        `Handaan, inuman, videoke, at kwentuhan! Walang uuwi nang maaga! 🍻`;
+
+      copyToClipboard(inviteText, "✓ Nakopya ang invitation text sa clipboard!");
+    });
+
+    // Add to Calendar iCalendar (.ics) Generator
+    document.getElementById('addToCalBtn').addEventListener('click', () => {
+      const icsData = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Ronnie and Mark//Birthday Celebration//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        "SUMMARY:Ronnie & Mark Tropa Double Birthday Bash!",
+        "DESCRIPTION:Double Birthday Celebration for Ronnie & Mark at Delos Reyes Residence. Handaan, inuman, videoke, at saya kasama ang tropa!",
+        "LOCATION:Delos Reyes Residence",
+        "DTSTART:20260919T040000Z",
+        "DTEND:20260919T100000Z",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute("download", "Ronnie_and_Mark_Tropa_Birthday.ics");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      fireConfetti();
+    });
+
+    window.addEventListener('load', () => {
+      setTimeout(fireConfetti, 600);
+    });
+  </script>
+</body>
+</html>

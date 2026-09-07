@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ronnie & Mark - Double Birthday Celebration Countdown</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fiesta: {
+              gold: '#D4AF37',
+              goldDark: '#996515',
+              bronze: '#C5A059',
+              greenDark: '#133E2B',
+              greenForest: '#1D5D3A',
+              emerald: '#0F3E2E',
+              cream: '#FFF9ED',
+              parchment: '#FBF5E6',
+              bamboo: '#8C6737'
+            }
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            serifHeading: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0d281e;
+      overflow-x: hidden;
+    }
+
+    /* Tropical Bamboo & Sun Pattern Layer */
+    .bamboo-bg {
+      background-color: #123124;
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.18) 0%, transparent 60%),
+        repeating-linear-gradient(90deg, 
+          rgba(164, 126, 73, 0.08) 0px, 
+          rgba(164, 126, 73, 0.08) 40px, 
+          rgba(66, 47, 21, 0.25) 41px, 
+          rgba(235, 203, 137, 0.1) 43px, 
+          rgba(164, 126, 73, 0.08) 75px);
+    }
+
+    /* Sunburst 8-ray subtle glow */
+    .sunburst {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 198, 70, 0.22) 0%, rgba(212, 175, 55, 0.05) 45%, transparent 70%);
+      pointer-events: none;
+      animation: spinSlow 90s linear infinite;
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating tropical leaves animation */
+    @keyframes sway {
+      0%, 100% { transform: rotate(-2deg) translateY(0px); }
+      50% { transform: rotate(2.5deg) translateY(-8px); }
+    }
+    .sway-slow {
+      animation: sway 6s ease-in-out infinite;
+    }
+    .sway-reverse {
+      animation: sway 7s ease-in-out infinite reverse;
+    }
+
+    /* Ornate metallic gold text gradient */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FBF0B9 0%, #D4AF37 35%, #AA771C 70%, #F5D77F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Golden border shine */
+    .gold-frame {
+      border: 2px solid rgba(212, 175, 55, 0.6);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(212, 175, 55, 0.1);
+    }
+
+    /* Countdown card shimmer */
+    .countdown-card {
+      background: linear-gradient(180deg, #1C4D38 0%, #0F3323 100%);
+      border: 1px solid rgba(245, 215, 127, 0.35);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 12px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Ribbon banner cuts */
+    .ribbon-banner {
+      position: relative;
+      background: linear-gradient(180deg, #FFF6DE 0%, #E9D7A5 100%);
+      border: 2px solid #996515;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+  </style>
+</head>
+<body class="bamboo-bg min-h-screen text-amber-50 relative flex flex-col justify-between selection:bg-amber-400 selection:text-green-950">
+
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
+    <div class="sunburst"></div>
+    
+    <!-- Top Left Monstera & Palm Leaves -->
+    <svg class="absolute -top-12 -left-12 w-48 sm:w-72 h-48 sm:h-72 text-emerald-700/40 sway-slow" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M10,10 C60,20 120,70 140,150 C110,130 90,80 10,10 Z M40,60 C80,80 120,120 130,180 C95,160 70,120 40,60 Z" />
+      <path d="M0,40 Q90,90 120,200 Q70,140 0,40" opacity="0.6"/>
+    </svg>
+
+    <!-- Top Right Foliage -->
+    <svg class="absolute -top-12 -right-12 w-48 sm:w-72 h-48 sm:h-72 text-emerald-700/40 sway-reverse" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M190,10 C140,20 80,70 60,150 C90,130 110,80 190,10 Z M160,60 C120,80 80,120 70,180 C105,160 130,120 160,60 Z" />
+    </svg>
+
+    <!-- Bottom Tropical Accents -->
+    <svg class="absolute -bottom-14 -left-10 w-44 sm:w-64 h-44 sm:h-64 text-amber-600/20" viewBox="0 0 200 200" fill="currentColor">
+      <circle cx="40" cy="160" r="80" />
+    </svg>
+    <svg class="absolute -bottom-14 -right-10 w-44 sm:w-64 h-44 sm:h-64 text-emerald-800/30 sway-slow" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M180,180 C110,160 70,100 50,20 C80,50 120,110 180,180 Z" />
+    </svg>
+  </div>
+
+  <header class="relative z-10 w-full max-w-5xl mx-auto px-4 pt-6 flex items-center justify-between">
+    <div class="flex items-center space-x-2 bg-emerald-950/70 border border-amber-500/30 px-3.5 py-1.5 rounded-full backdrop-blur-md text-xs font-medium text-amber-200">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping mr-1"></span>
+      <span>Philippine Standard Time (GMT+8)</span>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <!-- Sound Fanfare Button -->
+      <button id="audioToggleBtn" class="flex items-center space-x-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 hover:text-amber-100 px-3 py-1.5 rounded-full text-xs font-semibold transition-all backdrop-blur-sm" title="Play celebration chime">
+        <svg id="soundIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M11 5L6 9H2v6h4l5 4V5z"/>
+        </svg>
+        <span id="audioLabel">Fanfare</span>
+      </button>
+
+      <!-- Confetti Cannon Button -->
+      <button id="confettiBtn" class="bg-gradient-to-r from-amber-500 to-yellow-400 text-green-950 hover:brightness-110 font-bold px-3.5 py-1.5 rounded-full text-xs shadow-lg transition-transform active:scale-95 flex items-center space-x-1.5">
+        <span>🎉</span>
+        <span class="hidden sm:inline">Toss Confetti</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="relative z-10 w-full max-w-4xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center text-center">
+
+    <!-- Ornate Invitation Ribbon Banner -->
+    <div class="relative mb-6">
+      <div class="ribbon-banner px-6 sm:px-12 py-2 sm:py-2.5 rounded-md transform hover:scale-105 transition-transform duration-300">
+        <div class="flex items-center justify-center space-x-3">
+          <span class="text-amber-800 text-sm">✦</span>
+          <span class="font-display font-black tracking-[0.25em] text-emerald-950 text-xs sm:text-sm uppercase">
+            You Are Invited
+          </span>
+          <span class="text-amber-800 text-sm">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eagle and Sun Emblem Header Graphic -->
+    <div class="relative flex items-center justify-center space-x-4 mb-3">
+      <div class="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-amber-400"></div>
+      <div class="flex items-center space-x-2 text-amber-400">
+        <!-- Philippine Sun Inspired SVG Badge -->
+        <svg class="w-7 h-7 text-amber-400 animate-[spin_30s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+        </svg>
+        <span class="font-display text-xs tracking-widest text-amber-300 font-semibold uppercase">Grand Celebration</span>
+        <svg class="w-7 h-7 text-amber-400 animate-[spin_30s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+        </svg>
+      </div>
+      <div class="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-amber-400"></div>
+    </div>
+
+    <!-- Celebration Title -->
+    <h2 class="font-serifHeading italic text-xl sm:text-3xl text-amber-100/90 font-medium tracking-wide">
+      “Double Birthday Celebration”
+    </h2>
+
+    <!-- Celebrants' Names in Big Festive Golden Typography -->
+    <h1 class="font-display font-black text-4xl sm:text-6xl md:text-7xl mt-1 mb-4 tracking-wider gold-gradient-text drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+      RONNIE &amp; MARK
+    </h1>
+
+    <!-- Target Date & Schedule Badge -->
+    <div class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-emerald-950/80 border border-amber-400/40 px-4 sm:px-6 py-2.5 rounded-2xl shadow-xl backdrop-blur-md mb-10">
+      <div class="flex items-center space-x-1.5 text-amber-300 text-sm font-semibold">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <span>September 19, 2026 (Saturday)</span>
+      </div>
+      <span class="text-amber-500/60 hidden sm:inline">•</span>
+      <div class="flex items-center space-x-1.5 text-amber-200 text-sm font-medium">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <polyline points="12 7 12 12 15 15"/>
+        </svg>
+        <span>12:00 PM Noontime (PHT)</span>
+      </div>
+    </div>
+
+    <section aria-label="Countdown Timer" class="w-full max-w-3xl mb-10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+        
+        <!-- DAYS -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="daysNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-amber-300 tracking-tight transition-transform duration-200 group-hover:scale-105">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Days</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span id="daysSub" class="text-[10px] text-amber-400/60 mt-1">Sunrises left</span>
+        </div>
+
+        <!-- HOURS -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="hoursNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-amber-300 tracking-tight transition-transform duration-200 group-hover:scale-105">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Hours</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span class="text-[10px] text-amber-400/60 mt-1">60m cycles</span>
+        </div>
+
+        <!-- MINUTES -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="minutesNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-amber-300 tracking-tight transition-transform duration-200 group-hover:scale-105">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Minutes</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span class="text-[10px] text-amber-400/60 mt-1">60s ticks</span>
+        </div>
+
+        <!-- SECONDS -->
+        <div class="countdown-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group hover:border-amber-400 transition-all duration-300">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500/30 via-yellow-400 to-amber-500/30"></div>
+          <span id="secondsNum" class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-yellow-400 tracking-tight transition-transform duration-200 group-hover:scale-105 animate-[pulse_1s_ease-in-out_infinite]">
+            00
+          </span>
+          <div class="flex items-center space-x-1 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-amber-200 uppercase">Seconds</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400/80"></span>
+          </div>
+          <span class="text-[10px] text-yellow-400/70 mt-1">Live ticking</span>
+        </div>
+
+      </div>
+
+      <!-- Live Status Message Pill -->
+      <div class="mt-6 flex items-center justify-center">
+        <div id="statusPill" class="bg-emerald-900/60 border border-amber-400/30 text-amber-200 text-xs sm:text-sm px-4 py-1.5 rounded-full backdrop-blur-md flex items-center space-x-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
+          <span id="statusMessage">Counting down to the grand feast and toast!</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="w-full max-w-2xl bg-emerald-950/70 border border-amber-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-lg shadow-2xl relative">
+      
+      <!-- Corner Filipino Eagle Inspired Badges -->
+      <div class="flex flex-col sm:flex-row items-center justify-between border-b border-amber-500/20 pb-5 mb-5 gap-4 text-left">
+        <div class="flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-300 text-xl shadow-inner">
+            🏛️
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold">Venue &amp; Location</div>
+            <div class="text-base sm:text-lg font-semibold text-amber-50">Delos Reyes Residence</div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-300 text-xl shadow-inner">
+            👔
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold">Dress Code</div>
+            <div class="text-base sm:text-lg font-semibold text-amber-50">Barong / Festive Casual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Buttons -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Add to Calendar (.ics) -->
+        <button id="addToCalBtn" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-green-950 font-bold text-sm tracking-wide shadow-lg shadow-amber-900/30 flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          <span>Add to Calendar (.ICS)</span>
+        </button>
+
+        <!-- Copy Invitation Details -->
+        <button id="copyInviteBtn" class="w-full py-3 px-4 rounded-xl bg-emerald-900/80 hover:bg-emerald-800/80 border border-amber-400/40 text-amber-200 font-semibold text-sm tracking-wide flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+          </svg>
+          <span id="copyBtnText">Copy Invitation Text</span>
+        </button>
+      </div>
+
+      <!-- Toast Feedback Message -->
+      <div id="toastMessage" class="hidden mt-3 text-xs text-amber-300 bg-amber-950/80 border border-amber-400/40 py-1.5 px-3 rounded-lg text-center transition-opacity">
+        Copied to clipboard! Share with family and friends.
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="relative z-10 w-full text-center py-6 px-4 text-xs text-amber-300/60 border-t border-emerald-800/40 bg-emerald-950/50">
+    <p class="tracking-wide">Double Birthday Celebration • Ronnie &amp; Mark</p>
+    <p class="mt-1 text-amber-400/40">Mabuhay! Looking forward to celebrating together.</p>
+  </footer>
+
+  <script>
+    // Exact Target Date: September 19, 2026, 12:00:00 Philippines Time (GMT+8)
+    const TARGET_DATE_ISO = "2026-09-19T12:00:00+08:00";
+    const targetTimestamp = new Date(TARGET_DATE_ISO).getTime();
+
+    const daysNum = document.getElementById('daysNum');
+    const hoursNum = document.getElementById('hoursNum');
+    const minutesNum = document.getElementById('minutesNum');
+    const secondsNum = document.getElementById('secondsNum');
+    const statusMessage = document.getElementById('statusMessage');
+
+    // Number formatting helper
+    function pad(num) {
+      return num < 10 ? '0' + num : num;
+    }
+
+    // Core countdown calculation loop
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetTimestamp - now;
+
+      if (difference <= 0) {
+        // Event has arrived or passed!
+        daysNum.textContent = '00';
+        hoursNum.textContent = '00';
+        minutesNum.textContent = '00';
+        secondsNum.textContent = '00';
+        statusMessage.textContent = "🎉 It's Celebration Time! Happy Birthday Ronnie & Mark! 🥂";
+        return;
+      }
+
+      const totalSeconds = Math.floor(difference / 1000);
+      const days = Math.floor(totalSeconds / (3600 * 24));
+      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = Math.floor(totalSeconds % 60);
+
+      daysNum.textContent = pad(days);
+      hoursNum.textContent = pad(hours);
+      minutesNum.textContent = pad(minutes);
+      secondsNum.textContent = pad(seconds);
+    }
+
+    // Run initial update and set 1-second interval
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    function fireConfetti() {
+      if (typeof confetti === 'function') {
+        // Gold and emerald celebratory confetti
+        confetti({
+          particleCount: 65,
+          spread: 70,
+          origin: { y: 0.65 },
+          colors: ['#D4AF37', '#F5D77F', '#1D5D3A', '#FFF9ED', '#E63946']
+        });
+      }
+    }
+
+    document.getElementById('confettiBtn').addEventListener('click', () => {
+      fireConfetti();
+      playFiestaChime();
+    });
+
+    let synth = null;
+    function playFiestaChime() {
+      try {
+        if (!synth && window.Tone) {
+          Tone.start();
+          synth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: "triangle" },
+            envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 }
+          }).toDestination();
+          synth.volume.value = -6;
+        }
+
+        if (synth) {
+          const now = Tone.now();
+          // Warm festive arpeggio (F major fanfare: F4, A4, C5, F5)
+          synth.triggerAttackRelease("F4", "8n", now);
+          synth.triggerAttackRelease("A4", "8n", now + 0.12);
+          synth.triggerAttackRelease("C5", "8n", now + 0.24);
+          synth.triggerAttackRelease(["F5", "A5", "C6"], "4n", now + 0.36);
+        }
+      } catch (err) {
+        console.warn("Audio context could not start automatically:", err);
+      }
+    }
+
+    document.getElementById('audioToggleBtn').addEventListener('click', () => {
+      playFiestaChime();
+      fireConfetti();
+    });
+
+    const copyInviteBtn = document.getElementById('copyInviteBtn');
+    const toast = document.getElementById('toastMessage');
+
+    copyInviteBtn.addEventListener('click', () => {
+      const inviteText = `🎉 YOU ARE INVITED: DOUBLE BIRTHDAY CELEBRATION! 🎉\n` +
+        `Celebrants: Ronnie & Mark\n` +
+        `Date: Saturday, September 19, 2026\n` +
+        `Time: 12:00 PM Noontime (PHT)\n` +
+        `Venue: Delos Reyes Residence\n` +
+        `Dress Code: Barong / Festive Casual\n` +
+        `Counting down to a wonderful celebration together!`;
+
+      // Fallback copy execution as per sandbox requirements
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = inviteText;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand('copy');
+        toast.classList.remove('hidden');
+        toast.textContent = "✓ Invitation details copied to clipboard!";
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 3500);
+      } catch (e) {
+        console.error('Copy failed:', e);
+      }
+      document.body.removeChild(tempTextArea);
+    });
+
+    // Add to Calendar iCalendar (.ics) Generator
+    document.getElementById('addToCalBtn').addEventListener('click', () => {
+      const icsData = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Ronnie and Mark//Birthday Celebration//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        "SUMMARY:Ronnie & Mark Double Birthday Celebration",
+        "DESCRIPTION:Double Birthday Celebration for Ronnie & Mark at Delos Reyes Residence. Wear your favorite Barong or festive casual attire!",
+        "LOCATION:Delos Reyes Residence",
+        // 2026-09-19 12:00 PHT is 2026-09-19 04:00:00 UTC
+        "DTSTART:20260919T040000Z",
+        "DTEND:20260919T100000Z",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute("download", "Ronnie_and_Mark_Birthday_Celebration.ics");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      fireConfetti();
+    });
+
+    // Pop introductory subtle confetti on page load
+    window.addEventListener('load', () => {
+      setTimeout(fireConfetti, 600);
+    });
+  </script>
+</body>
+</html>
